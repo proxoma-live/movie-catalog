@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px 24px;
+}
+
+.menu {
+  display: flex;
+  list-style-type: none;
+  gap: 20px;
+}
+
+.menuItem {
+  font-weight: bold;
+  font-size: var(--fontSize);
+  user-select: none;
+}
+
+.logoMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
