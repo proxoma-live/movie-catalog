@@ -60,7 +60,7 @@
   width: 130px;
 
   transition-property: width;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
 }
 
 .imgContainer:hover {
@@ -79,5 +79,13 @@
   border-radius: 10px;
 
   background-color: rgb(48, 93, 122);
+  cursor: default;
+}
+
+.voteAverageGreen {
+  padding: 0.1em 0.5em;
+  border-radius: 10px;
+
+  background-color: rgb(69, 234, 110);
   cursor: default;
 }

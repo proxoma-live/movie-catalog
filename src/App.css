@@ -1,3 +1,7 @@
+body {
+  background-color: rgb(109, 105, 105);
+}
+
 .App {
   height: 100%;
 }

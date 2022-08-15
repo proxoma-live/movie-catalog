@@ -1,0 +1,60 @@
+.container {
+  padding: 1rem;
+  max-width: 1440px;
+
+  color: white;
+  background-color: black;
+}
+
+.personInner {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.name {
+  font-size: 2rem;
+}
+
+.properties {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+}
+
+.property {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+}
+
+.propertyContent {
+  font-size: 1.2rem;
+  line-height: 140%;
+}
+
+.actor {
+  border-radius: 10px;
+
+  width: 300px;
+  height: 450px;
+}
+
+.photos {
+  margin-top: 4rem;
+}
+
+.images {
+  display: flex;
+  gap: 1.5rem;
+
+  margin-top: 0.75rem;
+}
+
+.image {
+  border-radius: 10px;
+
+  width: 100px;
+  height: 150px;
+}
