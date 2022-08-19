@@ -31,3 +31,11 @@ code {
 .center {
   text-align: center;
 }
+
+body {
+  background-color: black;
+}
+
+.App {
+  height: 100%;
+}

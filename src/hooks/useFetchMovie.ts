@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import { URL, KEY } from "../config"
 
@@ -46,11 +47,33 @@ interface movieData {
   title: string
 }
 
+interface Recommendations {
+  adult: boolean,
+  backdrop_path: string,
+  genre_ids: number[],
+  id: number,
+  media_type: string,
+  original_language: string,
+  original_title: string,
+  overview: string,
+  popularity: number,
+  poster_path: string,
+  release_date: string,
+  title: string,
+  video: boolean,
+  vote_average: number,
+  vote_count: number
+}
+
 export const useFetchMovies = (id: string) => {
   const [data, setData] = useState<movieData | null>(null);
-  const [secondaryData, setSecondaryData] = useState<null | Cast[]>(null)
+  const [cast, setCast] = useState<null | Cast[]>(null)
+  const [recs, setRecs] = useState<null | Recommendations[]>(null);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<undefined | null | string>(null);
+
+  const {i18n} = useTranslation();
   
 
   useEffect(() => {
@@ -58,13 +81,13 @@ export const useFetchMovies = (id: string) => {
       try {
         setLoading(true);
 
-        const movie = await (await fetch(`${URL}movie/${id}?api_key=${KEY}`)).json();
-        const credits = await (await fetch(`${URL}movie/${id}/credits?api_key=${KEY}`)).json();
+        const movie = await (await fetch(`${URL}movie/${id}?api_key=${KEY}&language=${i18n.language}&append_to_response=credits,images,recommendations`)).json();
 
 
-        setSecondaryData(credits.cast);
         setData(movie);
-        
+        setCast(movie.credits.cast);
+        setRecs(movie.recommendations.results);
+
         setLoading(false);
   
       }
@@ -80,9 +103,9 @@ export const useFetchMovies = (id: string) => {
       }
     }
     fetchData(id);
-  }, [id]);
+  }, [id, i18n.language]);
 
-  return { data, secondaryData, loading, error}
+  return { data, cast, recs, loading, error}
 }
 
 export default useFetchMovies

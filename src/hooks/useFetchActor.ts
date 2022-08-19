@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+
 import { URL, KEY } from "../config"
 
 interface Actor {
@@ -33,6 +35,8 @@ export const useFetchActor = (id: number) => {
   const [images, setImages] = useState<null | Images[]>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<undefined | null | string>(null);
+
+  const {i18n} = useTranslation();
   
   console.log("images",images)
 
@@ -43,7 +47,7 @@ export const useFetchActor = (id: number) => {
       try {
         setLoading(true);
 
-        const actor = await (await fetch(`${URL}person/${id}?api_key=${KEY}`)).json();
+        const actor = await (await fetch(`${URL}person/${id}?api_key=${KEY}&language=${i18n.language}`)).json();
 
         const actorImages = await (await fetch(`${URL}person/${id}/images?api_key=${KEY}`)).json();
 
@@ -65,7 +69,7 @@ export const useFetchActor = (id: number) => {
       }
     }
     fetchData(id);
-  }, [id]);
+  }, [id, i18n.language]);
 
   return { data, images, loading, error}
 }

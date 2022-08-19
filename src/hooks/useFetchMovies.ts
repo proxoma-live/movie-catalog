@@ -1,22 +1,55 @@
+import { useTranslation } from "react-i18next";
+
 import { useState, useEffect } from "react";
+import { URL, KEY } from "../config";
+
+interface Movie {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
 
 
-export const useFetchMovies = (url: string) => {
-  const [data, setData] = useState<Array<object> | null>(null);
+export const useFetchMovies = (page: string, searchTerm: string | number) => {
+  const [data, setData] = useState<Array<Movie> | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<undefined | null | string>(null);
 
+  const { i18n } = useTranslation();
+
   useEffect(() => {
-    const fetchData = async ( url: string ) => {
+    const fetchData = async ( page: string, searchTerm: string | number ) => {
       try {
         setLoading(true);
 
-        const res = await fetch(url);
-        const json = await res.json();
+        if(searchTerm === "" || searchTerm === 0) {
+          const res = await fetch(`${URL}discover/movie?api_key=${KEY}&page=${page}&language=${i18n.language}`);
+          const json = await res.json();
+  
+          setData(json.results);
+          
+          setLoading(false);
+        }
+        else {
+          const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${searchTerm}&language=${i18n.language}&page=${page}`);
+          
+          const json = await res.json();
 
-        setData(json.results);
-        
-        setLoading(false);
+          setData(json.results);
+
+          setLoading(false);
+        }
   
       }
       catch (err: any) {
@@ -30,8 +63,9 @@ export const useFetchMovies = (url: string) => {
         }
       }
     }
-    fetchData(url);
-  }, [url]);
+
+    fetchData(page, searchTerm);
+  }, [page, searchTerm, i18n.language]);
 
   return { data, loading, error}
 }

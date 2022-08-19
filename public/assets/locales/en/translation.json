@@ -1,0 +1,18 @@
+{
+  "welcome_to_react": "Welcome to React and react-18next",
+
+
+  "movie": {
+    "title": "Title",
+    "overview": "Overview",
+    "release_date": "Release date",
+    "budget": "Budget",
+    "revenue": "Revenue",
+    "duration": "Duration"
+  },
+  "actor": {
+    "birthday": "Birthdate",
+    "biography": "Biography",
+    "photos": "Photos"
+  }
+}

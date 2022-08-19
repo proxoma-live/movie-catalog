@@ -1,24 +1,28 @@
-import React from "react";
-
-import { ReactComponent as Notification } from "../../assets/images/notif.svg";
 import BurgerMenu from "./BurgerMenu";
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
+import LangSwitcher from "./LangSwitcher";
+import Search from "./Search";
 
 import styles from "./navbar.module.css";
 
-function Navbar() {
+const Navbar: React.FC<{
+  changeSearchTerm: (search: string | number) => void;
+}> = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.logoMenu}>
         <BurgerMenu />
-        <Logo width={30} height={30} />
+        <div className={styles.logo}>
+          <Logo width={30} height={30} />
+        </div>
       </div>
       <div className={styles.menu}>
+        <Search changeSearchTerm={props.changeSearchTerm} />
         <p className={styles.menuItem}>Sign In</p>
-        <p className={styles.menuItem}>En</p>
+        <LangSwitcher />
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;

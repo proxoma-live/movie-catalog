@@ -1,23 +1,25 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import Home from "./pages/Home";
-import MoviePage from "./pages/MoviePage";
-
-import "./App.css";
-import ActorPage from "./pages/ActorPage";
+import ListMovies from "./pages/ListMovies";
+import Actor from "./pages/Actor";
+import Movie from "./pages/Movie";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/page/:page" component={Home} />
-          <Route path="/movie/:id" component={MoviePage} />
-          <Route path="/people/:id" component={ActorPage} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <>
+      {/* <Navbar /> */}
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            <Route path="/" component={ListMovies} exact />
+            <Route path="/page/:page" component={ListMovies} exact />
+            <Route path="/movie/:id" component={Movie} exact />
+            <Route path="/people/:id" component={Actor} exact />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </>
   );
 }
 

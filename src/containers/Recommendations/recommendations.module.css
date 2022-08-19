@@ -1,0 +1,12 @@
+.header {
+  margin-top: 4rem;
+}
+
+.recommendations {
+  margin-top: 3rem;
+
+  display: flex;
+  gap: 4rem;
+
+  flex-wrap: wrap;
+}
