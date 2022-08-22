@@ -4,16 +4,37 @@ import Paginate from "../../components/Pagination";
 
 import styles from "./pagination.module.css";
 
-const Pagination: React.FC = () => {
+interface Movie {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
+interface Props {
+  movies: Movie[];
+}
+
+const Pagination: React.FC<Props> = ({ movies }: Props) => {
   const { page }: any = useParams();
-  let pageNumbers = [1, 2, 3, 4, 5];
+  const pageNumbers = [];
 
-  if (page >= 5) {
-    const number = parseInt(page);
-    pageNumbers = [number - 2, number - 1, number, number + 1, number + 2];
+  let totalPosts = 10;
+  const postsPerPage = 20;
+
+  for (let i = 0; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
   }
-
-  const url = (pageNum: number) => {};
 
   return (
     <>

@@ -15,6 +15,7 @@ const Search: React.FC<{
           changeSearchTerm(e.target.value);
         }}
         type="text"
+        autoComplete="off"
       />
 
       <img className={styles.searchIcon} src="" alt="" />

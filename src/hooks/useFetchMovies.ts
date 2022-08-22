@@ -19,10 +19,17 @@ interface Movie {
   vote_average: number;
   vote_count: number;
 }
-
+interface Data {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+}
 
 export const useFetchMovies = (page: string, searchTerm: string | number) => {
-  const [data, setData] = useState<Array<Movie> | null>(null);
+  const [movies, setMovies] = useState<Array<Movie> | null>(null);
+  const [pages, setPages] = useState<number>();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<undefined | null | string>(null);
 
@@ -34,10 +41,11 @@ export const useFetchMovies = (page: string, searchTerm: string | number) => {
         setLoading(true);
 
         if(searchTerm === "" || searchTerm === 0) {
-          const res = await fetch(`${URL}discover/movie?api_key=${KEY}&page=${page}&language=${i18n.language}`);
-          const json = await res.json();
-  
-          setData(json.results);
+          
+          const data: Data = await (await fetch(`${URL}discover/movie?api_key=${KEY}&page=${page}&language=${i18n.language}`)).json();
+
+          setMovies(data.results);
+          setPages(data.total_pages);
           
           setLoading(false);
         }
@@ -46,7 +54,7 @@ export const useFetchMovies = (page: string, searchTerm: string | number) => {
           
           const json = await res.json();
 
-          setData(json.results);
+          setMovies(json.results);
 
           setLoading(false);
         }
@@ -67,7 +75,7 @@ export const useFetchMovies = (page: string, searchTerm: string | number) => {
     fetchData(page, searchTerm);
   }, [page, searchTerm, i18n.language]);
 
-  return { data, loading, error}
+  return { movies, pages, loading, error}
 }
 
 export default useFetchMovies

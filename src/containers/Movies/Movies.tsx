@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 
 import { useFetchMovies } from "../../hooks/useFetchMovies";
 import Movie from "../../components/Movie";
@@ -33,10 +34,15 @@ const Movies: React.FC<{
   const { page }: any = useParams();
   const history = useHistory();
 
-  const { data: movies, loading, error } = useFetchMovies(page, searchTerm);
+  const { movies, loading, error, pages } = useFetchMovies(page, searchTerm);
 
   const handleClick = (id: string | number) => {
     history.push(`/movie/${id}`);
+  };
+
+  const handlePageClick = (event: any) => {
+    console.log("event target", event.selected);
+    history.push(`/page/${event.selected + 1}`);
   };
 
   return (
@@ -54,7 +60,21 @@ const Movies: React.FC<{
         </div>
       )}
 
-      {!loading && <Pagination />}
+      {pages && (
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel=">"
+          previousLabel="<"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={3}
+          pageCount={500}
+          containerClassName={styles.pagination}
+          breakClassName={styles.li}
+          pageClassName={styles.li}
+          renderOnZeroPageCount={() => {}}
+        />
+      )}
       {!loading && <Space />}
     </>
   );

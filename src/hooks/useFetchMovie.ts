@@ -83,7 +83,6 @@ export const useFetchMovies = (id: string) => {
 
         const movie = await (await fetch(`${URL}movie/${id}?api_key=${KEY}&language=${i18n.language}&append_to_response=credits,images,recommendations`)).json();
 
-
         setData(movie);
         setCast(movie.credits.cast);
         setRecs(movie.recommendations.results);

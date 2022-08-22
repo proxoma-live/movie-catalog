@@ -5,3 +5,22 @@
 
   background-color: black;
 }
+
+.pagination {
+  display: flex;
+  gap: 1.5rem;
+
+  padding: 1rem 0 10rem;
+
+  list-style-type: none;
+
+  justify-content: center;
+  flex-wrap: wrap;
+
+  user-select: none;
+  color: white;
+}
+
+.li {
+  cursor: pointer;
+}
