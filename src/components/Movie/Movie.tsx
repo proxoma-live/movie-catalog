@@ -34,15 +34,21 @@ const Movie: React.FC<Props> = ({
   return (
     <div
       className={styles.card}
-      style={{
-        backgroundImage: `url${IMG_BASE_URL + BACKDROP_SIZE + backdrop_path}`,
-      }}
+      style={
+        backdrop_path !== null
+          ? {
+              backgroundImage: `linear-gradient(rgb(0,0,0,0.4), rgb(0,0,0,0.4)) ,url(${
+                IMG_BASE_URL + BACKDROP_SIZE + backdrop_path
+              })`,
+            }
+          : undefined
+      }
     >
       <div className={styles.imgContainer} onClick={() => handleClick(id)}>
         <img
           src={IMG_BASE_URL + MOVIE_SIZE + poster_path}
           className={styles.img}
-          alt=""
+          alt="movie"
         />
       </div>
       <div className={styles.info}>

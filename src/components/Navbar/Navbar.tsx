@@ -1,6 +1,6 @@
 import BurgerMenu from "./BurgerMenu";
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
-import LangSwitcher from "./LangSwitcher";
+import LangSwitcher from "../../containers/LangSwitcher";
 import Search from "./Search";
 
 import styles from "./navbar.module.css";

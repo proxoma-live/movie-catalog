@@ -5,7 +5,6 @@ import ReactPaginate from "react-paginate";
 
 import { useFetchMovies } from "../../hooks/useFetchMovies";
 import Movie from "../../components/Movie";
-import Pagination from "../Pagination";
 import Space from "../../pages/Space";
 import Spinner from "../../components/Spinner";
 
