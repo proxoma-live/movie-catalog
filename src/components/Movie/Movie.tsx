@@ -1,5 +1,4 @@
 import { sliceWord } from "../../utils/sliceWord";
-import { IMG_BASE_URL, BACKDROP_SIZE, MOVIE_SIZE } from "../../config";
 
 import styles from "./movie.module.css";
 
@@ -18,17 +17,20 @@ interface Props {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  full_backdrop_path: string;
+  full_movie_size: string;
   handleClick: (id: string | number) => void;
 }
 
 const Movie: React.FC<Props> = ({
   title,
   backdrop_path,
-  poster_path,
   id,
   release_date,
   overview,
   vote_average,
+  full_backdrop_path,
+  full_movie_size,
   handleClick,
 }) => {
   return (
@@ -37,19 +39,13 @@ const Movie: React.FC<Props> = ({
       style={
         backdrop_path !== null
           ? {
-              backgroundImage: `linear-gradient(rgb(0,0,0,0.4), rgb(0,0,0,0.4)) ,url(${
-                IMG_BASE_URL + BACKDROP_SIZE + backdrop_path
-              })`,
+              backgroundImage: `linear-gradient(rgb(0,0,0,0.4), rgb(0,0,0,0.4)) ,url(${full_backdrop_path})`,
             }
           : undefined
       }
     >
       <div className={styles.imgContainer} onClick={() => handleClick(id)}>
-        <img
-          src={IMG_BASE_URL + MOVIE_SIZE + poster_path}
-          className={styles.img}
-          alt="movie"
-        />
+        <img src={full_movie_size} className={styles.img} alt="movie" />
       </div>
       <div className={styles.info}>
         <h3 className={styles.title}>{title}</h3>

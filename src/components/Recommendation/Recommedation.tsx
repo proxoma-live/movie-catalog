@@ -1,5 +1,3 @@
-import { IMG_BASE_URL, POSTER_SIZE } from "../../config";
-
 import styles from "./recommendation.module.css";
 
 interface Props {
@@ -7,21 +5,21 @@ interface Props {
   title: string;
   genre_ids: number[];
   id: number;
+  full_poster_path: string;
   handleClick: (id: string | number) => void;
 }
 
 const Recommendation: React.FC<Props> = ({
-  poster_path,
   title,
-  genre_ids,
   id,
+  full_poster_path,
   handleClick,
 }) => {
   return (
     <div className={styles.container}>
       <img
         className={styles.img}
-        src={IMG_BASE_URL + POSTER_SIZE + poster_path}
+        src={full_poster_path}
         alt="poster"
         onClick={() => handleClick(id)}
       />

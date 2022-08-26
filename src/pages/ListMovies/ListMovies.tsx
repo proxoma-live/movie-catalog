@@ -10,10 +10,10 @@ const ListMovies = () => {
   const [searchTerm, setSearchTerm] = useState<number | string>("");
 
   const changeSearchTerm = (search: string | number) => {
-    functionDebounce(search);
+    debouce(search);
   };
 
-  const functionDebounce = useCallback(
+  const debouce = useCallback(
     debounce((search: string | number) => {
       setSearchTerm(search);
     }, 500),
@@ -24,7 +24,10 @@ const ListMovies = () => {
     <div className={styles.container}>
       <Navbar changeSearchTerm={changeSearchTerm} />
 
-      <MovieContainer searchTerm={searchTerm} />
+      <MovieContainer
+        searchTerm={searchTerm}
+        containerClassName={styles.movieContainer}
+      />
     </div>
   );
 };

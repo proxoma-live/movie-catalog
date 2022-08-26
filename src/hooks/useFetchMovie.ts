@@ -68,7 +68,7 @@ interface Recommendations {
 export const useFetchMovies = (id: string) => {
   const [data, setData] = useState<movieData | null>(null);
   const [cast, setCast] = useState<null | Cast[]>(null)
-  const [recs, setRecs] = useState<null | Recommendations[]>(null);
+  const [recommendations, setRecommendations] = useState<null | Recommendations[]>(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<undefined | null | string>(null);
@@ -85,7 +85,7 @@ export const useFetchMovies = (id: string) => {
 
         setData(movie);
         setCast(movie.credits.cast);
-        setRecs(movie.recommendations.results);
+        setRecommendations(movie.recommendations.results);
 
         setLoading(false);
   
@@ -104,7 +104,7 @@ export const useFetchMovies = (id: string) => {
     fetchData(id);
   }, [id, i18n.language]);
 
-  return { data, cast, recs, loading, error}
+  return { data, cast, recommendations, loading, error}
 }
 
 export default useFetchMovies

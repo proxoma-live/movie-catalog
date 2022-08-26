@@ -1,5 +1,3 @@
-import { BACKDROP_SIZE, IMG_BASE_URL } from "../../config";
-
 import styles from "./actor.module.css";
 
 interface Props {
@@ -15,21 +13,22 @@ interface Props {
   character: string;
   credit_id: string;
   order: number;
+  full_profile_path: string;
   handleClick: (id: string | number) => void;
 }
 
 const Actor: React.FC<Props> = ({
   name,
-  profile_path,
   character,
   id,
   handleClick,
+  full_profile_path,
 }) => {
   return (
     <div className={styles.actor}>
       <img
         className={styles.image}
-        src={IMG_BASE_URL + BACKDROP_SIZE + profile_path}
+        src={full_profile_path}
         alt="actor"
         onClick={() => handleClick(id)}
       />

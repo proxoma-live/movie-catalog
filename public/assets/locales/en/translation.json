@@ -8,7 +8,8 @@
     "release_date": "Release date",
     "budget": "Budget",
     "revenue": "Revenue",
-    "duration": "Duration"
+    "duration": "Duration",
+    "actors": "Actors"
   },
   "actor": {
     "birthday": "Birthdate",

@@ -3,24 +3,15 @@
   justify-content: center;
   align-items: center;
   gap: 0 2em;
-
   width: 100%;
   max-width: 600px;
-
   min-height: 20%;
-
   font-size: 1rem;
-
   padding: 2em 0;
-
   color: white;
-
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  /* background-color: transparent; */
-  /* background-image: linear-gradient(black, black),
-    url(../../assets/images/bg.png); */
 }
 
 .coreInfo {
@@ -33,7 +24,6 @@
   justify-content: center;
   align-items: flex-start;
   gap: 0.6em 0;
-
   max-width: 300px;
 }
 
@@ -45,20 +35,15 @@
 
 .tag {
   border-radius: 3px;
-
   padding: 0.25em 0.7em;
-
   background-color: yellow;
 }
 
 .imgContainer {
   max-width: 160px;
-
   border-radius: 10px;
   cursor: pointer;
-
   width: 130px;
-
   transition-property: width;
   transition-duration: 0.1s;
 }
